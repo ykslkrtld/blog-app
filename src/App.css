@@ -11,3 +11,18 @@
 .image{
   width: 3rem;
 }
+
+.page-link{
+  color: #DC3444;
+  background-color: #FFC007;
+}
+
+.page-link:hover{
+  color: #FFC007;
+  background-color: #DC3444;
+}
+
+.active .page-link{
+  background-color: #DC3444;
+  border-color: white;
+}
