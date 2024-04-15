@@ -7,3 +7,7 @@
 .card *{
   overflow: hidden;
 }
+
+.image{
+  width: 2rem;
+}

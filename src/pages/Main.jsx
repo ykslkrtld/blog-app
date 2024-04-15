@@ -46,11 +46,11 @@ const Main = () => {
 
   return (
     <div>
-      <MyNavbar />
-      <BlogCard blogCards={currentCards} setBlogCards={handleDelete} />
-      <div className="d-flex justify-content-center">
+      <MyNavbar blogCards={blogCards}/>
+      <div className="d-flex justify-content-center my-3">
         <Pagination>{items}</Pagination>
       </div>
+      <BlogCard currentCards={currentCards} handleDelete={handleDelete} />
     </div>
   );
 };

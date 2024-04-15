@@ -6,11 +6,11 @@ import Row from "react-bootstrap/Row";
 import MyModal from "../components/MyModal";
 import { useState } from "react";
 
-const BlogCard = ({ blogCards, setBlogCards }) => {
+const BlogCard = ({ currentCards, handleDelete }) => {
   const [showModal, setShowModal] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  
+
   const handleModal = (itemTitle, itemBody) => {
     setShowModal(!showModal);
     setTitle(itemTitle);
@@ -21,7 +21,7 @@ const BlogCard = ({ blogCards, setBlogCards }) => {
     <>
       <Container>
         <Row>
-          {blogCards.map((item) => (
+          {currentCards.map((item) => (
             <Col xs={12} sm={6} md={4} lg={3} key={item.id}>
               <Card className="card text-center my-2">
                 <Card.Header
@@ -32,10 +32,10 @@ const BlogCard = ({ blogCards, setBlogCards }) => {
                   }}
                 >
                   <span>
-                    {item.title.substring(0, 16)}
-                    {item.title.length > 15 ? "..." : ""}
+                    {item.title.substring(0, 20)}
+                    {item.title.length > 20 ? "..." : ""}
                   </span>
-                  <span onClick={() => setBlogCards(item.id)}>
+                  <span onClick={() => handleDelete(item.id)}>
                     <i className="fa-solid fa-trash text-danger"></i>
                   </span>
                 </Card.Header>
