@@ -3,25 +3,19 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import MyModal from "../components/MyModal"
+import MyModal from "../components/MyModal";
 import { useState } from "react";
 
-
 const BlogCard = ({ blogCards, setBlogCards }) => {
-
-    const [showModal, setShowModal] = useState(false)
-    const [title, setTitle] = useState("")
-    const [body, setBody] = useState("")
-    const handleModal = (itemTitle, itemBody) => {
-      setShowModal(!showModal)
-      setTitle(itemTitle)
-      setBody(itemBody)
-    }
-
-    const handleDelete = (id) => {
-      const newCards = blogCards.filter((item) => item.id !== id)
-      setBlogCards(newCards)
-    }
+  const [showModal, setShowModal] = useState(false);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  
+  const handleModal = (itemTitle, itemBody) => {
+    setShowModal(!showModal);
+    setTitle(itemTitle);
+    setBody(itemBody);
+  };
 
   return (
     <>
@@ -41,7 +35,7 @@ const BlogCard = ({ blogCards, setBlogCards }) => {
                     {item.title.substring(0, 16)}
                     {item.title.length > 15 ? "..." : ""}
                   </span>
-                  <span onClick={() => handleDelete(item.id)}>
+                  <span onClick={() => setBlogCards(item.id)}>
                     <i className="fa-solid fa-trash text-danger"></i>
                   </span>
                 </Card.Header>
@@ -49,7 +43,12 @@ const BlogCard = ({ blogCards, setBlogCards }) => {
                   <Card.Text>{item.body}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Button onClick={()=> handleModal(item.title, item.body)} variant="warning">See Details</Button>
+                  <Button
+                    onClick={() => handleModal(item.title, item.body)}
+                    variant="warning"
+                  >
+                    See Details
+                  </Button>
                 </Card.Footer>
               </Card>
             </Col>
@@ -57,11 +56,16 @@ const BlogCard = ({ blogCards, setBlogCards }) => {
         </Row>
       </Container>
       {showModal && (
-      <MyModal title={title} body={body} showModal={showModal} setShowModal={setShowModal} />
-    )
-    }
+        <MyModal
+          title={title}
+          body={body}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      )}
     </>
   );
 };
 
 export default BlogCard;
+
